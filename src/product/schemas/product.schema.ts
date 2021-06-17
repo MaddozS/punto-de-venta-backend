@@ -14,9 +14,6 @@ export class Product {
   @Prop({ required: true })
   price: number;
 
-  @Prop({ required: true, isSafeInteger: true })
-  qty: number;
-
   @Prop({ default: Date.now() })
   createdAt: Date;
 }
