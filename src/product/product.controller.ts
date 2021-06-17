@@ -1,5 +1,4 @@
-import { Controller, Post, Get, Res, HttpStatus, Body } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Controller, Post, Get, HttpStatus, Body, BadRequestException, HttpCode } from '@nestjs/common';
 import { CreateProductDTO } from './dto/product.dto';
 import { Product } from './schemas/product.schema';
 import { ProductService } from './product.service';
@@ -16,13 +15,14 @@ export class ProductController {
   }
 
   @Post()
-  async create(@Res() res: Response, @Body() createProductDTO: CreateProductDTO) {
+  @HttpCode(HttpStatus.CREATED)
+  async create(@Body() createProductDTO: CreateProductDTO): Promise<Product> {
     let product: Product;
-    try {
-      product = await this.productService.create(createProductDTO);
-      res.status(HttpStatus.CREATED).json(product);
-    } catch (err) {
-      res.status(HttpStatus.BAD_REQUEST).json(err);
-    }
+
+    product = await this.productService.create(createProductDTO).catch((error) => {
+      throw new BadRequestException(error, 'No se ha podido crear el producto');
+    });
+
+    return product;
   }
 }
