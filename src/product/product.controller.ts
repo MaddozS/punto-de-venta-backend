@@ -19,6 +19,7 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get()
+  @HttpCode(HttpStatus.OK)
   async getProducts(): Promise<Product[]> {
     const products = await this.productService.getAll();
 
@@ -26,6 +27,7 @@ export class ProductController {
   }
 
   @Get(':id')
+  @HttpCode(HttpStatus.OK)
   async getProduct(@Param() params): Promise<Product> {
     const products = await this.productService.getOne(params.id);
 
@@ -35,9 +37,7 @@ export class ProductController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async createProduct(@Body() createProductDTO: CreateProductDTO): Promise<Product> {
-    let product: Product;
-
-    product = await this.productService.createOne(createProductDTO).catch((error) => {
+    let product = await this.productService.createOne(createProductDTO).catch((error) => {
       throw new BadRequestException(error, 'No se ha podido crear el producto');
     });
 
@@ -45,16 +45,16 @@ export class ProductController {
   }
 
   @Put(':id')
+  @HttpCode(HttpStatus.OK)
   async updateProduct(@Param() params, @Body() createProductDTO: CreateProductDTO): Promise<Product> {
-    const products = await this.productService.updateOne(params.id, createProductDTO);
+    const updatedProduct = await this.productService.updateOne(params.id, createProductDTO);
 
-    return products;
+    return updatedProduct;
   }
 
   @Delete(':id')
-  async deleteProduct(@Param() params): Promise<Product> {
-    const products = await this.productService.deleteOne(params.id);
-
-    return products;
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async deleteProduct(@Param() params): Promise<void> {
+    await this.productService.deleteOne(params.id);
   }
 }
