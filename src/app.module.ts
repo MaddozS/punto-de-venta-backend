@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { ProductModule } from './product/product.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { InventoryController } from './inventory/inventory.controller';
+import { InventoryService } from './inventory/inventory.service';
 
 @Module({
   imports: [
@@ -17,7 +19,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       useNewUrlParser: true,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, InventoryController],
+  providers: [AppService, InventoryService],
 })
 export class AppModule {}
