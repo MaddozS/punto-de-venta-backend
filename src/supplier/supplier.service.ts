@@ -8,19 +8,29 @@ import { Supplier, SupplierDocument } from './schemas/supplier.schema';
 @Injectable()
 export class SupplierService implements Service<Supplier, CreateSupplierDTO> {
   constructor(@InjectModel(Supplier.name) private supplierModel: Model<SupplierDocument>) {}
-  getAll(): Promise<Supplier[]> {
-    throw new Error('Method not implemented.');
+  async getAll(): Promise<Supplier[]> {
+    const suppliers = await this.supplierModel.find();
+
+    return suppliers;
   }
-  getOne(id: string): Promise<Supplier> {
-    throw new Error('Method not implemented.');
+  async getOne(id: string): Promise<Supplier> {
+    const supplier = await this.supplierModel.findById(id);
+
+    return supplier;
   }
   createOne(dto: CreateSupplierDTO): Promise<Supplier> {
-    throw new Error('Method not implemented.');
+    const createdSupplier = new this.supplierModel(dto);
+
+    return createdSupplier.save();
   }
-  updateOne(id: string, dto: CreateSupplierDTO): Promise<Supplier> {
-    throw new Error('Method not implemented.');
+  async updateOne(id: string, dto: CreateSupplierDTO): Promise<Supplier> {
+    const updatedSupplier = await this.supplierModel.findByIdAndUpdate(id, dto, { new: true });
+
+    return updatedSupplier;
   }
-  deleteOne(id: string): Promise<Supplier> {
-    throw new Error('Method not implemented.');
+  async deleteOne(id: string): Promise<Supplier> {
+    const deletedSupplier = await this.supplierModel.findByIdAndDelete(id);
+
+    return deletedSupplier;
   }
 }
