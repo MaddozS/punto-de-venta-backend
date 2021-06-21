@@ -19,4 +19,4 @@ export class Inventory {
   createdAt: Date;
 }
 
-export const ProductSchema = SchemaFactory.createForClass(Inventory);
+export const InventorySchema = SchemaFactory.createForClass(Inventory);
