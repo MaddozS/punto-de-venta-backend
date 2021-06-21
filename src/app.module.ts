@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { InventoryController } from './inventory/inventory.controller';
 import { InventoryService } from './inventory/inventory.service';
 import { InventoryModule } from './inventory/inventory.module';
+import { SupplierModule } from './supplier/supplier.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { InventoryModule } from './inventory/inventory.module';
       useNewUrlParser: true,
     }),
     InventoryModule,
+    SupplierModule,
   ],
   controllers: [AppController, InventoryController],
   providers: [AppService, InventoryService],
