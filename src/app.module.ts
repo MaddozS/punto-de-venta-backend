@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
 import { ProductModule } from './product/product.module';
-import { MongooseModule } from '@nestjs/mongoose';
 import { SuppliersModule } from './suppliers/suppliers.module';
+import environment from 'src/shared/constants/environment';
+
+const { mongoUri } = environment;
 
 @Module({
   imports: [
@@ -14,7 +17,7 @@ import { SuppliersModule } from './suppliers/suppliers.module';
         })
       : null,
     ProductModule,
-    MongooseModule.forRoot(`mongodb://localhost/${process.env.blueyou}`, {
+    MongooseModule.forRoot(mongoUri, {
       useNewUrlParser: true,
     }),
     SuppliersModule,
