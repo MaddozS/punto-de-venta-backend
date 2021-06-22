@@ -6,7 +6,7 @@ export type InventoryDocument = Inventory & Document;
 
 @Schema()
 export class Inventory {
-  @Prop({ type: Types.ObjectId, ref: 'Product' })
+  @Prop({ type: Types.ObjectId, ref: 'Product', required: true })
   product: Product | Types.ObjectId;
 
   @Prop({ required: true })
