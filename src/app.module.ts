@@ -4,8 +4,6 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { ProductModule } from './product/product.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { InventoryController } from './inventory/inventory.controller';
-import { InventoryService } from './inventory/inventory.service';
 import { InventoryModule } from './inventory/inventory.module';
 
 @Module({
