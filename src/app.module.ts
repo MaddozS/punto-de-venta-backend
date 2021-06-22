@@ -16,12 +16,12 @@ import { InventoryModule } from './inventory/inventory.module';
         })
       : null,
     ProductModule,
-    MongooseModule.forRoot(`mongodb://localhost/${process.env.blueyou}`, {
+    MongooseModule.forRoot(`mongodb://localhost/${process.env.DATABASE_NAME}`, {
       useNewUrlParser: true,
     }),
     InventoryModule,
   ],
-  controllers: [AppController, InventoryController],
-  providers: [AppService, InventoryService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
