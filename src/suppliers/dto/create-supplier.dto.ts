@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class CreateSupplierDto {
+export class CreateSupplierDTO {
   @IsNotEmpty()
   readonly name: string;
 }
