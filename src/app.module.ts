@@ -7,7 +7,16 @@ import { ProductModule } from './product/product.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), ProductModule, MongooseModule.forRoot(`${process.env.MONGO_URI}`), SuppliersModule],
+  imports: [
+    process.env.NODE_ENV !== 'production'
+      ? ConfigModule.forRoot({
+          envFilePath: `.env.${process.env.NODE_ENV}`,
+        })
+      : null,
+    ProductModule,
+    MongooseModule.forRoot(`${process.env.MONGO_URI}`),
+    SuppliersModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
