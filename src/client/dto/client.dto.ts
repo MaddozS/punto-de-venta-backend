@@ -1,5 +1,7 @@
 export class CreateClientDTO {
+    readonly id: string;
     readonly name: string;
-    readonly id: number;
-    readonly createdAt: Date;
+    readonly email: string;
+    readonly boughtThisMonth: number;
+    readonly purchases: string[];
 }
