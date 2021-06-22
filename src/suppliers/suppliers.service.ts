@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Supplier } from './schemas/supplier.schema';
 import { CreateSupplierDTO } from './dto/create-supplier.dto';
-import { UpdateSupplierDto } from './dto/update-supplier.dto';
+import { UpdateSupplierDTO } from './dto/update-supplier.dto';
 
 @Injectable()
 export class SuppliersService {
@@ -25,7 +25,7 @@ export class SuppliersService {
     return supplier;
   }
 
-  async update(id: string, data: UpdateSupplierDto) {
+  async update(id: string, data: UpdateSupplierDTO) {
     const supplier = await this.supplierModel.findByIdAndUpdate(id, { $set: data }, { new: true }).exec();
     if (!supplier) {
       throw new NotFoundException(`Supplier with id ${id} not found`);
