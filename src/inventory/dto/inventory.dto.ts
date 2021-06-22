@@ -1,6 +1,18 @@
+import { IsNotEmpty, IsMongoId, IsNumber } from 'class-validator';
+import { Types } from 'mongoose';
 export class CreateInventoryDTO {
-  readonly product: string;
+  @IsNotEmpty()
+  @IsMongoId()
+  readonly product: Types.ObjectId;
+
+  @IsNotEmpty()
+  @IsNumber()
   readonly stock: number;
+
+  @IsNotEmpty()
+  @IsNumber()
   readonly minStockRecommended: number;
+
+  @IsNotEmpty()
   readonly createdAt: Date;
 }
