@@ -13,8 +13,9 @@ export class SuppliersController {
   }
 
   @Get()
-  findAll() {
-    return this.suppliersService.findAll();
+  async findAll() {
+    const suppliers = await this.suppliersService.findAll();
+    return suppliers;
   }
 
   @Get(':id')

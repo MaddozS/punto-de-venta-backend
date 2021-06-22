@@ -10,11 +10,11 @@ export class SuppliersService {
   constructor(@InjectModel(Supplier.name) private supplierModel: Model<Supplier>) {}
 
   async create(data: CreateSupplierDto) {
-    return new this.supplierModel(data);
+    return new this.supplierModel(data).save();
   }
 
-  findAll() {
-    return this.supplierModel.find().exec();
+  async findAll() {
+    return await this.supplierModel.find().exec();
   }
 
   async findOne(id: string) {
@@ -33,7 +33,7 @@ export class SuppliersService {
     return supplier;
   }
 
-  remove(id: string) {
-    return this.supplierModel.findByIdAndDelete(id);
+  async remove(id: string) {
+    return await this.supplierModel.findByIdAndDelete(id);
   }
 }

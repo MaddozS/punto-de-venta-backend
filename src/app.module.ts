@@ -1,13 +1,11 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigType } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductModule } from './product/product.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
-import environment from 'src/shared/constants/environment';
-
-const { mongoUri } = environment;
+import config from 'src/shared/config';
 
 @Module({
   imports: [
@@ -17,9 +15,9 @@ const { mongoUri } = environment;
         })
       : null,
     ProductModule,
-    MongooseModule.forRoot(mongoUri, {
-      useNewUrlParser: true,
-    }),
+    MongooseModule.forRoot(
+      'mongodb+srv://admin:aB31ZXDu4gtqPkB6@cluster0.5rkcb.mongodb.net/tiendita?retryWrites=true&w=majority',
+    ),
     SuppliersModule,
   ],
   controllers: [AppController],
