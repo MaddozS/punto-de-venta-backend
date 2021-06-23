@@ -10,7 +10,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { CreateInventoryDTO } from './dto/inventory.dto';
+import { CreateInventoryDTO } from './dto/create-inventory.dto';
 import { InventoryService } from './inventory.service';
 import { Inventory } from './schemas/inventory.schema';
 
