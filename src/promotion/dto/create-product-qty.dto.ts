@@ -8,5 +8,5 @@ export class CreateProductQtyDTO {
 
   @IsNotEmpty()
   @IsNumber()
-  quantity: number;
+  readonly quantity: number;
 }
