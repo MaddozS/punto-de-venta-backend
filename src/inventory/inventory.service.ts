@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Service } from 'src/types/Service';
-import { CreateInventoryDTO } from './dto/inventory.dto';
+import { CreateInventoryDTO } from './dto/create-inventory.dto';
+import { UpdateInventoryDTO } from './dto/update-inventory.dto';
 import { Inventory, InventoryDocument } from './schemas/inventory.schema';
 
 @Injectable()
@@ -27,8 +28,8 @@ export class InventoryService implements Service<Inventory, CreateInventoryDTO> 
     return createdInventory.save();
   }
 
-  async updateOne(inventoryID: string, createInventoryDTO: CreateInventoryDTO): Promise<Inventory> {
-    const updatedInventory = await this.inventoryModel.findByIdAndUpdate(inventoryID, createInventoryDTO, {
+  async updateOne<UpdateDTO = UpdateInventoryDTO>(id: string, dto: UpdateDTO): Promise<Inventory> {
+    const updatedInventory = await this.inventoryModel.findByIdAndUpdate(id, dto, {
       new: true,
     });
 
