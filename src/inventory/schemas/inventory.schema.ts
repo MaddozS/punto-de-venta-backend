@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import { Product } from 'src/product/schemas/product.schema';
+import { INVENTORY_STATUS } from 'src/types/InventoryStatus';
 
 export type InventoryDocument = Inventory & Document;
 
@@ -12,10 +13,13 @@ export class Inventory {
   @Prop({ required: true })
   stock: number;
 
-  @Prop({ required: true })
+  @Prop({ required: true, min: [0, "You can't have negative items"] })
   minStockRecommended: number;
 
-  @Prop({ default: Date.now() })
+  @Prop({ type: String, enum: INVENTORY_STATUS, default: INVENTORY_STATUS.WITH_STOCK })
+  status: number;
+
+  @Prop({ default: new Date() })
   createdAt: Date;
 }
 
