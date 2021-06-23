@@ -9,27 +9,27 @@ export class SuppliersController {
 
   @Post()
   create(@Body() createSupplierDto: CreateSupplierDTO) {
-    return this.suppliersService.create(createSupplierDto);
+    return this.suppliersService.createOne(createSupplierDto);
   }
 
   @Get()
   async findAll() {
-    const suppliers = await this.suppliersService.findAll();
+    const suppliers = await this.suppliersService.getAll();
     return suppliers;
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.suppliersService.findOne(id);
+    return this.suppliersService.getOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSupplierDto: UpdateSupplierDTO) {
-    return this.suppliersService.update(id, updateSupplierDto);
+    return this.suppliersService.updateOne(id, updateSupplierDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.suppliersService.remove(id);
+    return this.suppliersService.deleteOne(id);
   }
 }
