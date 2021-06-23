@@ -6,6 +6,10 @@ export class CreatePromotionDTO {
   readonly products?: CreateProductQtyDTO[]; //vacio significa que no hay condicion de productos
 
   @IsNotEmpty()
+  @IsString()
+  readonly code: string;
+
+  @IsNotEmpty()
   readonly amount: number;
 
   @IsNotEmpty()
