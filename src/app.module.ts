@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
 import { ProductModule } from './product/product.module';
-import { MongooseModule } from '@nestjs/mongoose';
 import { InventoryModule } from './inventory/inventory.module';
+import { SuppliersModule } from './suppliers/suppliers.module';
 
 @Module({
   imports: [
@@ -13,11 +14,10 @@ import { InventoryModule } from './inventory/inventory.module';
           envFilePath: `.env.${process.env.NODE_ENV}`,
         })
       : null,
+    MongooseModule.forRoot(`${process.env.MONGO_URI}`),
     ProductModule,
-    MongooseModule.forRoot(`mongodb://localhost/${process.env.DATABASE_NAME}`, {
-      useNewUrlParser: true,
-    }),
     InventoryModule,
+    SuppliersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
