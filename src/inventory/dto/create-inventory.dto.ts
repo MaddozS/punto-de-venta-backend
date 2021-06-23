@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsMongoId, IsNumber } from 'class-validator';
 import { Types } from 'mongoose';
+import { INVENTORY_STATUS } from 'src/types/InventoryStatus';
 export class CreateInventoryDTO {
   @IsNotEmpty()
   @IsMongoId()
@@ -12,6 +13,9 @@ export class CreateInventoryDTO {
   @IsNotEmpty()
   @IsNumber()
   readonly minStockRecommended: number;
+
+  @IsNotEmpty()
+  readonly status: INVENTORY_STATUS;
 
   @IsNotEmpty()
   readonly createdAt: Date;
