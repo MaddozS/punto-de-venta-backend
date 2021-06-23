@@ -11,11 +11,11 @@ export class SuppliersService implements Service<Supplier, CreateSupplierDTO> {
   constructor(@InjectModel(Supplier.name) private supplierModel: Model<Supplier>) {}
 
   async getAll(): Promise<Supplier[]> {
-    return await this.supplierModel.find().exec();
+    return await this.supplierModel.find().populate('productsOffer.product').exec();
   }
 
   async getOne(id: string): Promise<Supplier> {
-    const supplier = await this.supplierModel.findById(id).exec();
+    const supplier = await this.supplierModel.findById(id).populate('productsOffer.product').exec();
     if (!supplier) {
       throw new NotFoundException(`Supplier with id ${id} not found`);
     }
@@ -27,7 +27,10 @@ export class SuppliersService implements Service<Supplier, CreateSupplierDTO> {
   }
 
   async updateOne<UpdateDTO = UpdateSupplierDTO>(id: string, dto: UpdateDTO): Promise<Supplier> {
-    const supplier = await this.supplierModel.findByIdAndUpdate(id, { $set: dto }, { new: true }).exec();
+    const supplier = await this.supplierModel
+      .findByIdAndUpdate(id, { $set: dto }, { new: true })
+      .populate('productsOffer.product')
+      .exec();
     if (!supplier) {
       throw new NotFoundException(`Supplier with id ${id} not found`);
     }
