@@ -4,9 +4,10 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductModule } from './product/product.module';
+import { InventoryModule } from './inventory/inventory.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 import { SalesModule } from './sales/sales.module';
-
+import { PromotionModule } from './promotion/promotion.module';
 @Module({
   imports: [
     process.env.NODE_ENV !== 'production'
@@ -14,10 +15,12 @@ import { SalesModule } from './sales/sales.module';
           envFilePath: `.env.${process.env.NODE_ENV}`,
         })
       : null,
-    ProductModule,
     MongooseModule.forRoot(`${process.env.MONGO_URI}`),
+    ProductModule,
+    InventoryModule,
     SuppliersModule,
     SalesModule,
+    PromotionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

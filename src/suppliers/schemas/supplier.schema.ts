@@ -7,7 +7,7 @@ export class Supplier extends Document {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ type: [ProductOfferSchema], required: true })
+  @Prop({ type: [ProductOfferSchema], default: [] })
   productsOffer: Types.Array<ProductOffer>;
 }
 
