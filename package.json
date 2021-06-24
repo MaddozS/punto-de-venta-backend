@@ -18,7 +18,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:unit": "mocha"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.15",
@@ -27,7 +27,10 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/mongoose": "^7.2.4",
     "@nestjs/platform-express": "^7.6.15",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "class-validator": "^0.13.1",
+    "mocha": "^9.0.1",
     "mongoose": "^5.12.13",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -72,5 +75,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "mocha": {
+    "spec": "./test/unit-test-products.test.ts"
   }
 }
