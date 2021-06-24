@@ -27,3 +27,5 @@ export class Promotion {
   @Prop({ default: new Date() })
   createdAt: Date;
 }
+
+export const PromotionSchema = SchemaFactory.createForClass(Promotion);
