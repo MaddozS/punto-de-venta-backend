@@ -12,15 +12,6 @@ export class Sale {
     total: number;
 
     @Prop({ required: true })
-    discount: number;
-
-    @Prop({ required: true })
-    promotionId: string[];
-
-    @Prop({ required: true })
-    clientId: string;
-
-    @Prop({ required: true })
     cartItem: [{
         productId:string;
         quantity:number;
