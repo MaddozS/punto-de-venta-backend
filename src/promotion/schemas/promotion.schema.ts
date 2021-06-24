@@ -1,13 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { ProductQty, ProductQtySchema } from './productQty.shema';
+import { ProductQuantity, ProductQuantitySchema } from './product-quantity.shema';
 
 export type PromotionDocument = Promotion & Document;
 
 @Schema()
 export class Promotion {
-  @Prop({ type: [ProductQtySchema], default: [] })
-  products: Types.Array<ProductQty>;
+  @Prop({ type: [ProductQuantitySchema], default: [] })
+  products: Types.Array<ProductQuantity>;
 
   @Prop({ required: true, unique: true })
   code: string;
