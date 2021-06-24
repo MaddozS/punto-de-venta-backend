@@ -15,8 +15,5 @@ export class CreateInventoryDTO {
   readonly minStockRecommended: number;
 
   @IsNotEmpty()
-  readonly status: INVENTORY_STATUS;
-
-  @IsNotEmpty()
   readonly createdAt: Date;
 }
