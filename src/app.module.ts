@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductModule } from './product/product.module';
+import { InventoryModule } from './inventory/inventory.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 
 @Module({
@@ -13,8 +14,9 @@ import { SuppliersModule } from './suppliers/suppliers.module';
           envFilePath: `.env.${process.env.NODE_ENV}`,
         })
       : null,
-    ProductModule,
     MongooseModule.forRoot(`${process.env.MONGO_URI}`),
+    ProductModule,
+    InventoryModule,
     SuppliersModule,
   ],
   controllers: [AppController],
