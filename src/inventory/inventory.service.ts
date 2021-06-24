@@ -11,13 +11,13 @@ export class InventoryService implements Service<Inventory, CreateInventoryDTO> 
   constructor(@InjectModel(Inventory.name) private inventoryModel: Model<InventoryDocument>) {}
 
   async getAll(): Promise<Inventory[]> {
-    const inventoryItems = await this.inventoryModel.find().populate('product');
+    const inventoryItems = await this.inventoryModel.find().populate('product').exec();
 
     return inventoryItems;
   }
 
   async getOne(inventoryID: string): Promise<Inventory> {
-    const inventoryItem = await this.inventoryModel.findById(inventoryID).populate('product');
+    const inventoryItem = await this.inventoryModel.findById(inventoryID).populate('product').exec();
 
     return inventoryItem;
   }
@@ -37,7 +37,7 @@ export class InventoryService implements Service<Inventory, CreateInventoryDTO> 
   }
 
   async deleteOne(inventoryID: string): Promise<Inventory> {
-    const deletedInventory = await this.inventoryModel.findByIdAndDelete(inventoryID);
+    const deletedInventory = await this.inventoryModel.findByIdAndDelete(inventoryID).exec();
 
     return deletedInventory;
   }
