@@ -6,8 +6,8 @@ import { AppService } from './app.service';
 import { ProductModule } from './product/product.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
+import { SalesModule } from './sales/sales.module';
 import { PromotionModule } from './promotion/promotion.module';
-
 @Module({
   imports: [
     process.env.NODE_ENV !== 'production'
@@ -19,6 +19,7 @@ import { PromotionModule } from './promotion/promotion.module';
     ProductModule,
     InventoryModule,
     SuppliersModule,
+    SalesModule,
     PromotionModule,
   ],
   controllers: [AppController],
