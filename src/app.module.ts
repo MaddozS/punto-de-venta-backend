@@ -10,11 +10,7 @@ import { PromotionModule } from './promotion/promotion.module';
 
 @Module({
   imports: [
-    process.env.NODE_ENV !== 'production'
-      ? ConfigModule.forRoot({
-          envFilePath: `.env.${process.env.NODE_ENV}`,
-        })
-      : null,
+    ConfigModule.forRoot({ envFilePath: process.env.NODE_ENV !== 'production' && `.env.${process.env.NODE_ENV}` }),
     MongooseModule.forRoot(`${process.env.MONGO_URI}`),
     ProductModule,
     InventoryModule,
