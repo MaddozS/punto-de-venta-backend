@@ -1,5 +1,5 @@
-import * as chai from 'chai';
-import chaiHttp = require('chai-http');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
 
 // URL del servidor local del proyecto
 const baseUrl = 'http://localhost:5000';
