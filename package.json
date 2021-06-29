@@ -18,7 +18,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:unit": "mocha"
+    "test:unit": "mocha ./test/**/*.test.js --reporter spec"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.15",
@@ -76,8 +76,5 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  },
-  "mocha": {
-    "spec": "./test/unit-test-products.test.ts"
   }
 }
